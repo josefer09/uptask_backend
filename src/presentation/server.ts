@@ -6,6 +6,7 @@ import { CustomError } from '../utils';
 import { corsConfig } from '../config/cors';
 import morgan from 'morgan';
 import path from 'path';
+import { envs } from '../config/envs';
 
 type Options = {
     port: number;
@@ -26,7 +27,9 @@ export class Server {
 
     async start() {
         // Cors
-        this.app.use(cors(corsConfig));
+        this.app.use(cors( {
+            origin: envs.FRONTEND_URL
+        }));
 
         //* Middlewares
         // Servir archivos estáticos desde la carpeta 'public'
