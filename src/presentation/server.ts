@@ -27,9 +27,7 @@ export class Server {
 
     async start() {
         // Cors
-        this.app.use(cors( {
-            origin: envs.FRONTEND_URL
-        }));
+        this.app.use(cors(corsConfig));
 
         //* Middlewares
         // Servir archivos estáticos desde la carpeta 'public'
